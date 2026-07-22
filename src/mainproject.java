@@ -2,7 +2,7 @@ package ledsystem;
 
 import java.awt.Color;
 
-class Project1 {
+public class mainproject {
 
     public static void main(String[] args) {
         LedController controller = new LedController(10);
