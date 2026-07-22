@@ -7,11 +7,11 @@ public class mainproject {
     public static void main(String[] args) {
         LedController controller = new LedController(10);
 
-        BlinkAnimation blinkAnimation = new BlinkAnimation();
+        WaveAnimation waveAnimation = new WaveAnimation();
 
-
-        controller.addAnimation(blinkAnimation);
+        controller.addAnimation(waveAnimation);
         controller.play();
     }
 }
+
 

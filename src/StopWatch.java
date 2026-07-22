@@ -1,37 +1,23 @@
 package ledsystem.utils;
 
-import java.time.Instant;
-
 public class StopWatch {
-    
-    private Double startTime;
+    private long startTime = 0;
+    private boolean running = false;
 
-    /*
-     * This is the constructor. Use it to construct the Stopwatch.
-     */
-    public StopWatch() {}
-
-    /*
-     * This starts the stopwatch. You can reuse it to restart the stopwatch.
-     */
     public void start() {
-        startTime = getTime();
+        this.startTime = System.currentTimeMillis();
+        this.running = true;
     }
 
-    /*
-     * This return the current time. If you don't call the `start` method you will get an error.
-     */
+    public void stop() {
+        this.running = false;
+    }
+
     public double get() {
-        if (startTime.isNaN()) {
-            throw new RuntimeException("HELPPPPP! Please initiate stopwatchh!");
+        if (!running) {
+            return 0.0;
         }
-        return getTime() - this.startTime;
-    }
-
-    /*
-     * THIS DOES NOT CONCERN YOU. PLEASE DONT ASK QUESTIONS
-     */
-    private double getTime() {
-        return Instant.now().toEpochMilli() / 1000;
+        long elapsed = System.currentTimeMillis() - startTime;
+        return elapsed / 1000;
     }
 }
