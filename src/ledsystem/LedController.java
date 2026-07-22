@@ -1,5 +1,5 @@
 package ledsystem;
-class LedController{
+public class LedController{
     private final LedStrip strip;
     private Animation animation;
 
