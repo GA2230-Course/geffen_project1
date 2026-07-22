@@ -1,18 +1,22 @@
 package ledsystem;
 
 import ledsystem.utils.StopWatch;
-
 import java.awt.*;
 
 public class BlinkAnimation implements Animation {
     private final StopWatch sw = new StopWatch();
+    private final Color colorA;
+    private final Color colorB;
+    private final double delay;
     private boolean isColorA = true;
-    private double targetTime = 2.0;
+    private double targetTime;
     private boolean isFirstRun = true;
 
-
-    public BlinkAnimation() {
-
+    public BlinkAnimation(Color colorA, Color colorB, double delay) {
+        this.colorA = colorA;
+        this.colorB = colorB;
+        this.delay = delay;
+        this.targetTime = delay;
     }
 
     @Override
@@ -25,18 +29,15 @@ public class BlinkAnimation implements Animation {
         if (sw.get() >= targetTime) {
             Color nextColor;
             if (isColorA) {
-                nextColor = Color.RED;
+                nextColor = colorA;
             } else {
-                nextColor = Color.GREEN;
+                nextColor = colorB;
             }
 
-
-            for (int i = 0; i < strip.getLength(); i++) {
-                strip.setColor(i, nextColor);
-            }
+            strip.setAllColors(nextColor);
 
             isColorA = !isColorA;
-            targetTime += 2.0;
+            targetTime += delay;
         }
     }
 }
